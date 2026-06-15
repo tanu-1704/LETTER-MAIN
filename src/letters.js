@@ -9,7 +9,7 @@ Because without your nonsense, my day feels too peaceful (and boring 😤).
 
 Keep being annoying… it’s kinda your talent.`,
     color: "gradient-1",
-    voice: "/voices/day1.mp3"
+    
   },
 
   {
@@ -24,7 +24,7 @@ Those random updates used to be the best part of my day.
 
 Honestly, life would be too normal without your chaos`,
     color: "gradient-2",
-    voice: "/voices/day2.mp3"
+    
   },
 
   {
@@ -37,7 +37,7 @@ Don’t ask me why this name exists… it just stuck with you.
 But hey… you are way stronger than you think.
 And I genuinely believe you can reach every height you deserve ✨`,
     color: "gradient-3",
-    voice: "/voices/day3.mp3"
+    
   },
 
   {
@@ -49,7 +49,7 @@ Even on the worst days, you somehow make things feel lighter.
 
 You don’t even try… it just happens naturally.`,
     color: "gradient-4",
-    voice: "/voices/day4.mp3"
+    
   },
 
   {
@@ -64,7 +64,7 @@ but somehow this name just suits you in the most random way.
 
 At this point, even you can’t escape it.`,
     color: "gradient-5",
-    voice: "/voices/day5.mp3"
+    
   },
 
   {
@@ -74,7 +74,7 @@ At this point, even you can’t escape it.`,
 
 And I’m your unpaid employee I guess.`,
     color: "gradient-6",
-    voice: "/voices/day6.mp3"
+    
   },
 
   {
@@ -85,7 +85,7 @@ you’ll always be my safe place and my greatest blessing 🤍
 
 YOU CAN SEE ME DEAD BUT NEVER AGAINST YOU`,
     color: "gradient-7",
-    voice: "/voices/day7.mp3"
+    
   },
 
   {
@@ -101,7 +101,7 @@ but for me, it’s simple — my reelationship 😌📱
 And no matter where life takes us…
 you’ll always be my favorite notification`,
     color: "gradient-7",
-    voice: "/voices/day8.mp3"
+    
   }
 ];
 
