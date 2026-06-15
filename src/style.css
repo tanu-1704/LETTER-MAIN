@@ -422,3 +422,50 @@
     box-shadow: 0 15px 40px rgba(0,0,0,0.15);
     color: #db2777; /* Slightly darker pink on hover */
 }
+
+/* =========================
+   VAULT VIEW
+========================= */
+.vault-view {
+    display: none;
+}
+
+.vault-view.active {
+    display: block;
+}
+
+.vault-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 50vh; /* Keeps it inside the card so she can scroll */
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-top: 10px;
+}
+
+.vault-item {
+    background: rgba(0,0,0,0.05);
+    padding: 15px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.vault-item-title {
+    font-weight: 600;
+    color: #374151;
+    font-size: 1.1rem;
+}
+
+.vault-item audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 20px;
+}
+
+/* Custom Scrollbar to make it look clean */
+.vault-list::-webkit-scrollbar { width: 6px; }
+.vault-list::-webkit-scrollbar-track { background: transparent; }
+.vault-list::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
