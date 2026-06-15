@@ -1,4 +1,4 @@
-import { letters, wordPuzzles, Voices } from "./letters.js";
+import { letters, wordPuzzles, bonusVoiceNotes } from "./letters.js";
 
 /* =========================
    GAME STATE
