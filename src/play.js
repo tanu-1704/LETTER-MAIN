@@ -1,4 +1,4 @@
-import { letters, wordPuzzles } from "./letters.js";
+import { letters, wordPuzzles, Voices } from "./letters.js";
 
 /* =========================
    GAME STATE
@@ -408,7 +408,6 @@ renderEnvelopes();
 /* =========================
    VOICE VAULT
 ========================= */
-
 function openVault() {
   document.getElementById("mainView").style.display = "none";
   document.getElementById("vaultView").classList.add("active");
@@ -416,13 +415,12 @@ function openVault() {
   const vaultList = document.getElementById("vaultList");
   vaultList.innerHTML = ""; // Clear it out
 
-  // Loop through your letters and create an audio player for each one!
+  // 1. Load the original 8 game days
   letters.forEach(letter => {
     if (letter.voice) {
       const item = document.createElement("div");
       item.className = "vault-item";
       
-      // We clean up the title so it just says the nickname
       const cleanTitle = letter.title.replace(`Day ${letter.day}: `, "");
       
       item.innerHTML = `
@@ -432,7 +430,21 @@ function openVault() {
       vaultList.appendChild(item);
     }
   });
+
+  // 2. Load the extra numbered voice notes
+  bonusVoiceNotes.forEach(note => {
+    const item = document.createElement("div");
+    item.className = "vault-item";
+    
+    item.innerHTML = `
+      <div class="vault-item-title">✨ Extra: ${note.title}</div>
+      <audio controls src="${note.voice}"></audio>
+    `;
+    vaultList.appendChild(item);
+  });
 }
+
+
 
 function closeVault() {
   document.getElementById("mainView").style.display = "block";
