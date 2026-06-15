@@ -5,7 +5,7 @@ import { letters, wordPuzzles } from "./letters.js";
 ========================= */
 
 let selectedLetter = null;
-let unlockedLetters = {};
+let unlockedLetters = {}; // Game resets on refresh!
 
 let currentGuess = "";
 let attempts = 0;
@@ -254,7 +254,7 @@ function submitGuess() {
     msg.className = "message success";
 
     unlockedLetters[selectedLetter.day] = true;
-    
+    // localStorage save removed so it locks on refresh!
 
     setTimeout(() => {
       closeGame();
@@ -376,6 +376,12 @@ function closeGame() {
 function closeLetter() {
   document.getElementById("mainView").style.display = "block";
   document.getElementById("letterView").classList.remove("active");
+  
+  // Extra safety: Stop audio when closing the letter
+  const audio = document.getElementById("audioPlayer");
+  if (audio && !audio.paused) {
+      audio.pause();
+  }
 }
 
 /* =========================
