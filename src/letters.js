@@ -109,7 +109,7 @@ you’ll always be my favorite notification`,
 
 export const bonusVoiceNotes = [
   { 
-    title: "Random College Gossip", 
+    title: "Gossips", 
     voice: "./voices/9.mp3" 
   },
   { 
@@ -117,7 +117,7 @@ export const bonusVoiceNotes = [
     voice: "./voices/10.mp3" 
   },
   { 
-    title: "Just Because", 
+    title: "dispossible Insaan", 
     voice: "./voices/11.mp3" 
   }, // <-- I added a comma here!
   { 
