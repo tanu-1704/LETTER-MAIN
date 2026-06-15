@@ -254,7 +254,6 @@ function submitGuess() {
     msg.className = "message success";
 
     unlockedLetters[selectedLetter.day] = true;
-    // localStorage save removed so it locks on refresh!
 
     setTimeout(() => {
       closeGame();
@@ -291,28 +290,18 @@ function openLetter(letter) {
 
   container.innerHTML = `
     <div class="voice-note">
-
-      <div class="voice-note-title">
-        🎧 You and Your Baatein 
-        
-      </div>
-
+      <div class="voice-note-title">🎧 You and Your Baatein</div>
       <div class="cassette">
-
         <div class="cassette-window">
           <div class="reel left"></div>
           <div class="tape-line"></div>
           <div class="reel right"></div>
         </div>
-
         <audio id="audioPlayer" src="${letter.voice}"></audio>
-
         <input type="range" id="progressBar" value="0" step="1">
-
         <div class="cassette-controls">
           <button class="cassette-btn" onclick="toggleAudio()">▶ / ⏸</button>
         </div>
-
       </div>
     </div>
   `;
@@ -377,7 +366,6 @@ function closeLetter() {
   document.getElementById("mainView").style.display = "block";
   document.getElementById("letterView").classList.remove("active");
   
-  // Extra safety: Stop audio when closing the letter
   const audio = document.getElementById("audioPlayer");
   if (audio && !audio.paused) {
       audio.pause();
@@ -408,12 +396,13 @@ renderEnvelopes();
 /* =========================
    VOICE VAULT
 ========================= */
+
 function openVault() {
   document.getElementById("mainView").style.display = "none";
   document.getElementById("vaultView").classList.add("active");
 
   const vaultList = document.getElementById("vaultList");
-  vaultList.innerHTML = ""; // Clear it out
+  vaultList.innerHTML = ""; 
 
   // 1. Load the original 8 game days
   letters.forEach(letter => {
@@ -425,7 +414,10 @@ function openVault() {
       
       item.innerHTML = `
         <div class="vault-item-title">Day ${letter.day}: ${cleanTitle}</div>
-        <audio controls controlsList="nodownload" src="${letter.voice}"></audio>
+        <div style="margin-top: 10px;">
+            <button class="cassette-btn" onclick="toggleVaultAudio(this)">▶ Play</button>
+            <audio src="${letter.voice}" onended="this.previousElementSibling.textContent = '▶ Play'"></audio>
+        </div>
       `;
       vaultList.appendChild(item);
     }
@@ -438,23 +430,48 @@ function openVault() {
     
     item.innerHTML = `
       <div class="vault-item-title">✨ Extra: ${note.title}</div>
-      <audio controls controlsList="nodownload" src="${note.voice}"></audio>
+      <div style="margin-top: 10px;">
+          <button class="cassette-btn" onclick="toggleVaultAudio(this)">▶ Play</button>
+          <audio src="${note.voice}" onended="this.previousElementSibling.textContent = '▶ Play'"></audio>
+      </div>
     `;
     vaultList.appendChild(item);
   });
 }
 
+// Custom Player Logic for the Vault
+window.toggleVaultAudio = function(btn) {
+    const audio = btn.nextElementSibling;
+    
+    // Pause all OTHER audios in the vault so they don't overlap
+    document.querySelectorAll("#vaultList audio").forEach(a => {
+        if(a !== audio) {
+            a.pause();
+            a.previousElementSibling.textContent = "▶ Play";
+        }
+    });
 
-
+    // Play or Pause the one she clicked
+    if (audio.paused) {
+        audio.play();
+        btn.textContent = "⏸ Pause";
+    } else {
+        audio.pause();
+        btn.textContent = "▶ Play";
+    }
+};
 
 function closeVault() {
   document.getElementById("mainView").style.display = "block";
   document.getElementById("vaultView").classList.remove("active");
 
-  // This prevents the audio from continuing to play after she closes the vault!
   const audios = document.querySelectorAll("#vaultList audio");
-  audios.forEach(a => a.pause());
+  audios.forEach(a => {
+      a.pause();
+      a.previousElementSibling.textContent = "▶ Play";
+  });
 }
+
 /* expose */
 window.openVault = openVault;
 window.closeVault = closeVault;
